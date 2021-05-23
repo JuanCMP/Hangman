@@ -15,7 +15,7 @@ def random_name():
 def normalization():
   '''Remove accents to the random word'''
   normalizations = {'á':'a','é':'e','í':'i','ó':'o','ú':'u'}
-  random_word = random_name()
+  random_word = random_name() # 'osó'
   for index, letter in enumerate(list(random_word)):
     if letter in normalizations.keys():
       list(random_word)[index] = normalizations[letter]  
@@ -28,13 +28,13 @@ def word2lines():
     norm_word_s[idx] = '_'
   return norm_word, norm_word_s # 'oso' --> ['_','_','_'] 
 
-def line2letter(letter, word):
-  ''' Add letter to a list if is in word '''
+'''def line2letter(letter, word):
+  Add letter to a list if is in word
   
   tidx = [] # add letter if is in word 
   if letter in word:
     tidx.append(letter)
-  return tidx
+  return tidx'''
   
 def run():   
   try:
@@ -48,23 +48,31 @@ def run():
     n_lives = 5
     print('Number of lives {}'. format(n_lives))  
     os.system('clear')
-    print('The word to guess is: {}'. format(hidden_word))
+    print('The word to guess is: {}'. format(norm_word)) 
     fidx = []
     while n_lives > 0:
       letter = input(print('Insert a letter: '))
-      tidx = line2letter(letter, norm_word)
-      if letter in tidx:
+      #tidx = line2letter(letter, norm_word)
+      tidx = []
+      if letter in norm_word:
+        tidx.append(letter)
         for i in range(len(tidx)):
           for j in range(len(norm_word)):
             if tidx[i] == list(norm_word)[j]:
               hidden_word[j] = tidx[i]
+          if None:
+            pass
+            #print('Ganaste, la palabra era {} '. format(norm_word))
+            #break
+          
           print('Processing...')
           print('Congrat!, {} is in word'. format(letter))
           time.sleep(2)
           os.system('clear')
           print('Lives = {}'. format(n_lives))
           print('Remember wrong letter inserted =', fidx)
-          print(hidden_word)
+          print(hidden_word[:-1])
+          
       else:
         fidx.append(letter)
         print('{} is wrong'. format(letter))
