@@ -48,9 +48,9 @@ def main():
     n_lives = 5
     print(f'Number of lives {n_lives}')  
     os.system('clear')
-    print(f'The word to guess is: {norm_word}') 
+    print(f'The word to guess is: {hidden_word}') 
     fidx = []
-    
+  
     while n_lives > 0:
       letter = input('Insert a letter: ')
       tidx = []
